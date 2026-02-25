@@ -1,4 +1,4 @@
-function About(){
+function About({values}){
     return(
         <div className="page-heading">
             <header className="heading">
@@ -9,11 +9,11 @@ function About(){
                 <tbody>
                     <tr>
                         <th>Event Name</th>
-                        <td>Digital Marketing Masterclass</td>
+                        <td id="name-replacement">{values.nameReplacement}</td>
                     </tr>
                     <tr>
                         <th>Date</th>
-                        <td>October 15, 2028</td>
+                        <td id="date-replacement">{values.dateReplacement}</td>
                     </tr>
                     <tr>
                         <th>Time</th>

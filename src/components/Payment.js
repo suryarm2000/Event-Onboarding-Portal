@@ -5,28 +5,28 @@ function Payment({values, handleChange}){
             <h2>Payment Information</h2>
                 <div className="payment-row">
                     <div className="ticket-section">
-                        <label className="input-field">
+                        <label className="input-field ticket-input-section">
                             <p className="form-text">Number of Tickets</p>
-                            <input className="input-box tickets" type="text" name="tickets" value={values.tickets} onChange={handleChange} />
+                            <input className="input-box tickets" type="text" name="Tickets" value={values.Tickets} onChange={handleChange} />
                         </label>
                     </div>
                     <div className="pay-method">
                         <p className="form-text">Payment Method</p>
                         <div className="radio-payment">
                             <label className="radio">
-                                <input className="radio-input" type="radio" name="paymentmethod" value="creditcard" checked={values.paymentmethod === "creditcard"} onChange={handleChange} />
+                                <input className="radio-input" type="radio" name="PaymentMethod" value="creditcard" checked={values.PaymentMethod === "creditcard"} onChange={handleChange} />
                                 <p className="form-text">Credit Card</p>
                             </label>
                             <label className="radio">
-                                <input className="radio-input" type="radio" name="paymentmethod" value="debitcard" checked={values.paymentmethod === "debitcard"} onChange={handleChange} />
+                                <input className="radio-input" type="radio" name="PaymentMethod" value="debitcard" checked={values.PaymentMethod === "debitcard"} onChange={handleChange} />
                                 <p className="form-text">Debit Card</p>
                             </label>
                             <label className="radio">
-                                <input className="radio-input" type="radio" name="paymentmethod" value="cash" checked={values.paymentmethod === "cash"} onChange={handleChange} />
+                                <input className="radio-input" type="radio" name="PaymentMethod" value="cash" checked={values.PaymentMethod === "cash"} onChange={handleChange} />
                                 <p className="form-text">Cash</p>
                             </label>
                             <label className="radio">
-                                <input className="radio-input" type="radio" name="paymentmethod" value="check" checked={values.paymentmethod === "check"} onChange={handleChange} />
+                                <input className="radio-input" type="radio" name="PaymentMethod" value="check" checked={values.PaymentMethod === "check"} onChange={handleChange} />
                                 <p className="form-text">Check</p>
                             </label>
                         </div>
@@ -38,19 +38,19 @@ function Payment({values, handleChange}){
                     </p>
                     <label className="sign-input-section">
                         <p className="form-text">Signature</p>
-                        <input className="input-box sign" type="text" name="sign" value={values.sign} onChange={handleChange} />
+                        <input className="input-box sign" type="text" name="Sign" value={values.Sign} onChange={handleChange} />
                     </label>
                     <label className="radio confirm-section">
-                        <input className="radio-confirm" type="radio" name="confirm" value="confirm" checked={values.confirm === "confirm"} onChange={handleChange} />
+                        <input className="radio-confirm" type="radio" name="Confirm" value="confirm" checked={values.Confirm === "confirm"} onChange={handleChange} />
                         <p className="form-text">Yes, I understand</p>
                     </label>
                     <label className="payment-inputs date-signed-input-section">
                         <p className="form-text">Date Signed</p>
-                        <input className="input-box" type="date" name="datesigned" value={values.datesigned} onChange={handleChange} />
+                        <input className="input-box" type="date" name="DateSigned" value={values.DateSigned} onChange={handleChange} />
                     </label>
                 </div>
             <div className="submit-section">
-                <button className="button-submit" type="submit" disabled={!values.confirm} >Submit</button>
+                <button className="button-submit" type="submit" disabled={!values.Confirm} >Submit</button>
             </div>
         </div>
     )

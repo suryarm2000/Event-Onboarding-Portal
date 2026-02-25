@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dayjs from "dayjs";
 import About from "./components/About";
 import Participant from "./components/Participant";
 import Payment from "./components/Payment";
@@ -7,33 +8,44 @@ import Footer from "./components/Footer";
 function Page(){
 
     const [inputs, setInputs] = useState({
-        name: "",
-        dob: "",
-        gender: "",
-        email: "",
-        number: "",
-        platform: "",
-        othertext: "",
-        tickets: "",
-        paymentmethod: "",
-        confirm: "",
-        sign: "",
-        datesigned: ""
+        Name: "",
+        DateOfBirth: "",
+        Gender: "",
+        Email: "",
+        Number: "",
+        Platform: "",
+        OtherText: "",
+        Tickets: "",
+        PaymentMethod: "",
+        Confirm: "",
+        Sign: "",
+        DateSigned: "",
+        nameReplacement: "Digital Marketing Masterclass",
+        dateReplacement: "October 15, 2028"
     });
 
     function handleChange(e){
         const target = e.target;
         const name = target.name;
         const value = target.type === "checkbox"? target.checked : target.value;
-        if(name === "name"){
+        if(name === "Name"){
             const fullName = value.replace(/[^a-zA-Z. ]/g, "");
             setInputs((prev) => ({
                 ...prev,
-                [name] : fullName
+                [name] : fullName,
+                "nameReplacement" : fullName === "" ? "Digital Marketing Masterclass" : fullName
             }));
             return;
         }
-        if(name === "number"){
+        if(name === "DateOfBirth"){
+            const dateOfBirth = dayjs(value).format("MMMM D, YYYY")
+            setInputs((prev) => ({
+                ...prev,
+                [name] : value,
+                "dateReplacement" : value === "" ? "October 15, 2028" : dateOfBirth
+            }))
+        }
+        if(name === "Number"){
             const phoneNumber = value.replace(/\D/g, "").slice(0, 10);
             setInputs((prev) => ({
                 ...prev,
@@ -41,7 +53,7 @@ function Page(){
             }));
             return;
         }
-        if(name === "email"){
+        if(name === "Email"){
             const emailInput = value.replace(/\s/g, "").toLowerCase();
             setInputs((prev) => ({
                 ...prev,
@@ -49,7 +61,7 @@ function Page(){
             }));
             return;
         }
-        if(name === "tickets"){
+        if(name === "Tickets"){
             const ticketsNumber = value.replace(/\D/g, "").slice(0, 4);
             setInputs((prev) => ({
                 ...prev,
@@ -67,25 +79,41 @@ function Page(){
         e.preventDefault();
         console.log("INPUTS DATA:", inputs);
         let canSubmit = true;
+        let toFill = [];
+        let message = "Please Fill ";
         for(const [key, value] of Object.entries(inputs)){
             if(value === ""){
                 if(key === "othertext"){
-                    if(inputs.platform === "other"){
+                    if(inputs.Platform === "other"){
                         canSubmit = false;
+                        toFill.push(key)
                     }
                 }else{
                     canSubmit = false;
+                    toFill.push(key);
                 }
             }
         }
+        let len = toFill.length;
+        for(let i = 0; i < len; i++){
+            if(i+1 < len){
+                if(i+2 < len){
+                    message += toFill[i] + ", ";
+                }else{
+                    message += toFill[i] + " and "
+                }
+            }else{
+                message += toFill[i] + ".";
+            }
+        }
         if(!canSubmit){
-            alert("Please fill out all the details");
+            alert(message);
         }
     }
 
     return(
         <div className="page">
-            <About />
+            <About values={inputs} />
             <hr />
             <form onSubmit={handleSubmit}>
                 <Participant values={inputs} handleChange={handleChange} />
